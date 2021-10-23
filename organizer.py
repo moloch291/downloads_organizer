@@ -22,8 +22,13 @@ def distribute(files):
         print(file)
 
 
+def define_paths():
+    pass
+
+
 def organize():
-    distribute(collect_downloads_content())
+    define_paths()
+    distribute(collect_downloads_content(d))
 
 
 if __name__ == '__main__':
