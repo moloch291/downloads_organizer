@@ -1,4 +1,2 @@
-# This module will write directory paths in csv in order to save them permanently
-
-def write_on_csv():
+def write_on_csv(file_path, directory_type, value):
     pass
