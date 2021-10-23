@@ -1,9 +1,6 @@
-import os
-
 from util import reader
 from util import writer
 from util import string_factory
-from util import directory_handler
 from util import magic_numbers
 
 

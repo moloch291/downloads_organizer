@@ -1,8 +1,6 @@
 import csv
 import os
 
-from util import directory_handler
-
 
 def read_from_csv(file_path):
     with open(file_path, mode='r') as file:
