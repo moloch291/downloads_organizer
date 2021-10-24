@@ -13,4 +13,4 @@ def read_from_csv(file_path):
 
 def content_collector(directory_path, file_container):
     for file_name in os.listdir(directory_path):
-        file_container.append(directory_path, file_name)
+        file_container.append(file_name)

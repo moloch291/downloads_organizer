@@ -11,18 +11,23 @@ def is_assured(directory_type):
             return permission[string_factory.VALUE] == string_factory.TRUE
 
 
-def ask_back(content, directory_type):
+def ask_back(examples, directory_type):
+    writer.terminal_cleaner()
     print(string_factory.FILE_EXAMPLES_PROMPT)
     for printing in range(magic_numbers.ASSURANCE_PRINTING_DURATION):
-        print(content[printing].split("/")[-1])
+        print(examples[printing].split("/")[-1])
     user_input = input(string_factory.PERMISSION_TO_PROCEED)
     if user_input in ["Y", "y", "Yes", "yes"]:
-        writer.write_on_csv(string_factory.IS_ASSURED_CSV_PATH, directory_type, string_factory.TRUE)
+        writer.write_on_csv(
+            string_factory.IS_ASSURED_CSV_PATH,
+            directory_type,
+            string_factory.TRUE
+        )
     elif user_input in ["N", "n", "No", "no"]:
         collect_downloads_content()
     else:
-        print("Please type yes or no!")
-        ask_back(content, directory_type)
+        print(string_factory.YES_OR_NO)
+        ask_back(examples, directory_type)
 
 
 def collect_downloads_content():
@@ -34,7 +39,6 @@ def collect_downloads_content():
     except FileNotFoundError:
         print(string_factory.FOLDER_NOT_FOUND)
         collect_downloads_content()
-    print(files_in_download)
     return files_in_download
 
 
@@ -58,12 +62,14 @@ def define_path(path_of_):
     output_path_in_file = [directory_path[string_factory.PATH] for directory_path in paths
                            if directory_path[string_factory.DIRECTORY_TYPE] == path_of_][0]
     output_path = output_path_in_file if output_path_in_file != string_factory.UNKNOWN \
-        else input(f"'{path_of_}' folder path unknown! Please provide: ")
+        else input(f"The '{path_of_}' folder path unknown! Please provide: ")
     return output_path
 
 
 def organize():
-    distribute(collect_downloads_content())
+    content = collect_downloads_content()
+    if len(content) > 0:
+        distribute(content)
 
 
 if __name__ == '__main__':

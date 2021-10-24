@@ -17,6 +17,7 @@ IS_ASSURED_CSV_PATH = "info/is_assured.csv"
 
 # Errors:
 FOLDER_NOT_FOUND = "Error:\nFolder not found!"
+YES_OR_NO = "Please type Yes or No!"
 
 # Communication:
 FILE_EXAMPLES_PROMPT = "In the given directory you have files such as:\n"
