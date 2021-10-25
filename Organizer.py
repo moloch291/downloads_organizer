@@ -7,6 +7,7 @@ from variable_storage import magic_numbers
 
 # Will become class...
 reader = rdr.Reader()
+writer = Writer.Writer()
 
 
 def is_assured(directory_type):
@@ -66,9 +67,7 @@ def distribute(downloads_content):
 
 def define_path(path_of_):
     paths = reader.read_from_csv(string_factory.PATHS_CSV_PATH)
-    output_path_in_file = [directory_path[string_factory.PATH]
-                           for directory_path in paths
-                           if directory_path[string_factory.DIRECTORY_TYPE] == path_of_][0]
+    output_path_in_file = reader.find_searched_item(paths, path_of_)
     output_path = output_path_in_file if output_path_in_file != string_factory.UNKNOWN \
         else input(f"The '{path_of_}' folder path unknown! Please provide: ")
     return output_path

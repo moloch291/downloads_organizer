@@ -1,3 +1,5 @@
+from variable_storage import string_factory
+
 
 class DirectoryHandler:
 
