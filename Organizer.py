@@ -1,6 +1,6 @@
 # Tools:
-from tools import Reader as rdr
-from tools import Writer
+from tools import Reader as rdr, Writer, Communicator, DirectoryHandler as dir_h
+
 # Variable storage:
 from variable_storage import string_factory
 from variable_storage import magic_numbers
@@ -15,39 +15,6 @@ def is_assured(directory_type):
     for permission in permissions:
         if permission[string_factory.DIRECTORY_TYPE] == directory_type:
             return permission[string_factory.VALUE] == string_factory.TRUE
-
-
-def ask_back(examples, directory_type):
-    file_writer = Writer.Writer()
-    file_writer.terminal_cleaner()
-    print(string_factory.FILE_EXAMPLES_PROMPT)
-    for printing in range(magic_numbers.ASSURANCE_PRINTING_DURATION):
-        print(examples[printing].split("/")[-1])
-    user_input = input(string_factory.PERMISSION_TO_PROCEED)
-    if user_input in ["Y", "y", "Yes", "yes"]:
-        file_writer.write_on_csv(
-            string_factory.IS_ASSURED_CSV_PATH,
-            directory_type,
-            string_factory.TRUE
-        )
-    elif user_input in ["N", "n", "No", "no"]:
-        collect_downloads_content()
-    else:
-        print(string_factory.YES_OR_NO)
-        ask_back(examples, directory_type)
-
-
-def collect_downloads_content():
-
-    downloads_path = define_path(string_factory.DOWNLOADS)
-    files_in_download = []
-    try:
-        reader.content_collector(downloads_path, files_in_download)
-        ask_back(files_in_download, string_factory.DOWNLOADS)
-    except FileNotFoundError:
-        print(string_factory.FOLDER_NOT_FOUND)
-        collect_downloads_content()
-    return files_in_download
 
 
 def is_assured_all():
@@ -74,7 +41,8 @@ def define_path(path_of_):
 
 
 def organize():
-    content = collect_downloads_content()
+    handler = dir_h.DirectoryHandler()
+    content = handler.collect_downloads_content(string_factory.DOWNLOADS)
     if len(content) > 0:
         distribute(content)
 
