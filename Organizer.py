@@ -34,7 +34,7 @@ def distribute(downloads_content):
 
 def organize():
     handler = dir_h.DirectoryHandler()
-    content = handler.collect_target_content(string_factory.DOWNLOADS)
+    content = handler.collect_content_of_target_dir(string_factory.DOWNLOADS)
     if len(content) > 0:
         distribute(content)
 
