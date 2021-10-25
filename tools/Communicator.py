@@ -1,5 +1,5 @@
-from tools import Writer
-from variable_storage import string_factory as str_f
+import variable_storage.string_factory as str_f
+import observer.Writer as Writer
 
 
 class Communicator:

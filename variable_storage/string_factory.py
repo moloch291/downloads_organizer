@@ -10,6 +10,7 @@ VALUE = "value"
 MUSIC = "music"
 VIDEOS = "videos"
 PICTURES = "pictures"
+OBSERVER = "observer"
 
 # Paths:
 PATHS_CSV_PATH = "csv/paths.csv"

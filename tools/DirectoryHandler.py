@@ -1,5 +1,6 @@
-from tools import Reader, Communicator, Writer
+import observer.Reader as Reader, observer.Writer as Writer
 from variable_storage import string_factory as str_f
+from tools import Communicator
 
 
 class DirectoryHandler:
