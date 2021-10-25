@@ -32,17 +32,9 @@ def distribute(downloads_content):
         organize()
 
 
-def define_path(path_of_):
-    paths = reader.read_from_csv(string_factory.PATHS_CSV_PATH)
-    output_path_in_file = reader.find_searched_item(paths, path_of_)
-    output_path = output_path_in_file if output_path_in_file != string_factory.UNKNOWN \
-        else input(f"The '{path_of_}' folder path unknown! Please provide: ")
-    return output_path
-
-
 def organize():
     handler = dir_h.DirectoryHandler()
-    content = handler.collect_downloads_content(string_factory.DOWNLOADS)
+    content = handler.collect_target_content(string_factory.DOWNLOADS)
     if len(content) > 0:
         distribute(content)
 

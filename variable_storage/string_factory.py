@@ -22,3 +22,5 @@ YES_OR_NO = "Please type Yes or No!"
 # Communication:
 FILE_EXAMPLES_PROMPT = "In the given directory you have files such as:\n"
 PERMISSION_TO_PROCEED = "\nWould you like to proceed? [Y/N] "
+POSITIVE_FEEDBACK = ["Y", "y", "Yes", "yes"]
+NEGATIVE_FEEDBACK = ["N", "n", "No", "no"]
