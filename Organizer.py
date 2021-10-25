@@ -1,7 +1,12 @@
-from util import reader
-from util import writer
-from util import string_factory
-from util import magic_numbers
+# Tools:
+from tools import Reader as rdr
+from tools import Writer
+# Variable storage:
+from variable_storage import string_factory
+from variable_storage import magic_numbers
+
+# Will become class...
+reader = rdr.Reader()
 
 
 def is_assured(directory_type):
@@ -12,13 +17,14 @@ def is_assured(directory_type):
 
 
 def ask_back(examples, directory_type):
-    writer.terminal_cleaner()
+    file_writer = Writer.Writer()
+    file_writer.terminal_cleaner()
     print(string_factory.FILE_EXAMPLES_PROMPT)
     for printing in range(magic_numbers.ASSURANCE_PRINTING_DURATION):
         print(examples[printing].split("/")[-1])
     user_input = input(string_factory.PERMISSION_TO_PROCEED)
     if user_input in ["Y", "y", "Yes", "yes"]:
-        writer.write_on_csv(
+        file_writer.write_on_csv(
             string_factory.IS_ASSURED_CSV_PATH,
             directory_type,
             string_factory.TRUE
@@ -31,6 +37,7 @@ def ask_back(examples, directory_type):
 
 
 def collect_downloads_content():
+
     downloads_path = define_path(string_factory.DOWNLOADS)
     files_in_download = []
     try:
@@ -59,7 +66,8 @@ def distribute(downloads_content):
 
 def define_path(path_of_):
     paths = reader.read_from_csv(string_factory.PATHS_CSV_PATH)
-    output_path_in_file = [directory_path[string_factory.PATH] for directory_path in paths
+    output_path_in_file = [directory_path[string_factory.PATH]
+                           for directory_path in paths
                            if directory_path[string_factory.DIRECTORY_TYPE] == path_of_][0]
     output_path = output_path_in_file if output_path_in_file != string_factory.UNKNOWN \
         else input(f"The '{path_of_}' folder path unknown! Please provide: ")

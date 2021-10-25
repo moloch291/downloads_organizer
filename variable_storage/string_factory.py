@@ -12,8 +12,8 @@ VIDEOS = "videos"
 PICTURES = "pictures"
 
 # Paths:
-PATHS_CSV_PATH = "info/paths.csv"
-IS_ASSURED_CSV_PATH = "info/is_assured.csv"
+PATHS_CSV_PATH = "csv/paths.csv"
+IS_ASSURED_CSV_PATH = "csv/is_assured.csv"
 
 # Errors:
 FOLDER_NOT_FOUND = "Error:\nFolder not found!"
