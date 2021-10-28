@@ -23,7 +23,8 @@ class Reader:
     @staticmethod
     def find_searched_item(paths, path_of_):
         return [directory_path[str_f.PATH]
-                for directory_path in paths if directory_path[str_f.DIRECTORY_TYPE] == path_of_][0]
+                for directory_path in paths
+                if directory_path[str_f.DIRECTORY_TYPE] == path_of_][0]
 
     @staticmethod
     def define_path(path_of_):

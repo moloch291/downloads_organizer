@@ -1,5 +1,5 @@
-directory type,path
-downloads,unknown
-pictures,unknown
-videos,unknown
-music,unknown
+directory type,path,is assured
+downloads,unknown,false
+music,unknown,false
+pictures,unknown,false
+videos,unknown,false
