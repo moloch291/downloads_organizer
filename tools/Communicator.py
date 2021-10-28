@@ -15,12 +15,12 @@ class Communicator:
             return False
         else:
             print(str_f.YES_OR_NO)
-            return False
+            Communicator.ask_back(examples)
 
     @staticmethod
     def handle_examples(examples):
         if examples is not None and len(examples) > 0:
-            print("\nThe target folder contains files such as:\n")
+            print(str_f.FILE_EXAMPLES_PROMPT)
             Writer.display_examples(examples)
         else:
-            print("\nThis directory is empty!")
+            print(str_f.EMPTY_DIR)
