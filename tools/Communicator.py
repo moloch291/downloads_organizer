@@ -4,10 +4,12 @@ from tools.observer.Writer import Writer
 
 class Communicator:
 
-    @staticmethod
-    def ask_back(examples=None):
-        Writer.terminal_cleaner()
-        Communicator.handle_examples(examples)
+    def __init__(self):
+        self.writer = Writer()
+
+    def ask_back(self, examples=None):
+        self.writer.terminal_cleaner()
+        self.handle_examples(examples)
         user_input = input(str_f.PERMISSION_TO_PROCEED)
         if user_input in str_f.POSITIVE_FEEDBACK:
             return True
@@ -15,12 +17,11 @@ class Communicator:
             return False
         else:
             print(str_f.YES_OR_NO)
-            Communicator.ask_back(examples)
+            self.ask_back(examples)
 
-    @staticmethod
-    def handle_examples(examples):
+    def handle_examples(self, examples):
         if examples is not None and len(examples) > 0:
             print(str_f.FILE_EXAMPLES_PROMPT)
-            Writer.display_examples(examples)
+            self.writer.display_examples(examples)
         else:
             print(str_f.EMPTY_DIR)
