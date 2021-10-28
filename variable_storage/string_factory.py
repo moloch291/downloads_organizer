@@ -17,7 +17,7 @@ PATHS_CSV_PATH = "csv/paths.csv"
 IS_ASSURED_CSV_PATH = "csv/is_assured.csv"
 
 # Errors:
-FOLDER_NOT_FOUND = "Error:\nFolder not found!"
+FOLDER_NOT_FOUND = "Error:\nFolder not found! Proceed with other directories:"
 YES_OR_NO = "Please type Yes or No!"
 
 # Communication:

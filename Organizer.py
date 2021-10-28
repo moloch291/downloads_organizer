@@ -1,7 +1,7 @@
 # Tools:
 import os.path
 
-from tools import Communicator
+from tools.Communicator import Communicator
 from tools.DirectoryHandler import DirectoryHandler as Dir_H
 from tools.observer.Reader import Reader
 from tools.observer.Writer import Writer
@@ -24,30 +24,31 @@ def is_assured_all():
            is_assured(str_f.PICTURES)
 
 
-def init_paths(user_name=None):
-    communicator = Communicator.Communicator(user_name)
+def init_paths():
     directories = Reader.read_from_csv(str_f.PATHS_CSV_PATH)
     for directory in directories:
         content = []
-        if directory[str_f.PATH] == str_f.UNKNOWN or directory[str_f.IS_ASSURED] != str_f.TRUE:
+        if directory[str_f.PATH] == str_f.UNKNOWN and directory[str_f.IS_ASSURED] != str_f.TRUE:
             dir_path = Reader.define_path(directory[str_f.DIRECTORY_TYPE])
-            fill_up_content(content, dir_path, communicator.user_name)
-            if communicator.ask_back(directory[str_f.DIRECTORY_TYPE], str_f.FILE_EXAMPLES_PROMPT, content):
-                Writer.write_on_csv(
-                    str_f.PATHS_CSV_PATH,
-                    directory[str_f.DIRECTORY_TYPE],
-                    dir_path,
-                    str_f.TRUE
-                )
+            if fill_up_content(content, dir_path):
+                its_sure = Communicator.ask_back(content)
+                if its_sure:
+                    Writer.write_on_csv(
+                        str_f.PATHS_CSV_PATH,
+                        directory[str_f.DIRECTORY_TYPE],
+                        dir_path,
+                        str_f.TRUE
+                    )
 
 
-def fill_up_content(content, dir_path, user_name):
+def fill_up_content(content, dir_path):
     try:
         Reader.collect_content(dir_path, content)
+        return True
     except FileNotFoundError:
         Writer.terminal_cleaner()
         print(str_f.FOLDER_NOT_FOUND)
-        init_paths(user_name)
+        return False
 
 
 def distribute_files():
@@ -59,6 +60,7 @@ def distribute_files():
             print(file)
     else:
         init_paths()
+        distribute_files()
 
 
 def relocate(file):
