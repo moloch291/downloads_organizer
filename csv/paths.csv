@@ -1,5 +1,5 @@
-directory type,path
-downloads,unknown
-pictures,unknown
-videos,unknown
-music,unknown
+directory type,path,is assured
+downloads,/home/moloch/Downloads,true
+music,/home/Music,true
+pictures,/home/moloch/Pictures,true
+videos,/home/moloch/Videos,true
