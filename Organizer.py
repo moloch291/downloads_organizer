@@ -1,5 +1,4 @@
-# Tools:
-import os.path
+import os
 # Tools:
 from tools.Communicator import Communicator
 from tools.FileHandler import FileHandler as File_H
@@ -15,7 +14,7 @@ class Organizer:
         # Tools:
         self.writer = Writer()
         self.communicator = Communicator()
-        # Boolean private field:
+        # Boolean private field to store if we set the paths or not:
         self.handled = False
         # List of directories and their info:
         self.directories = Reader.read_from_csv(str_f.PATHS_CSV_PATH)
@@ -25,7 +24,7 @@ class Organizer:
 ########################################################################################################################
 
     def set_handled(self):
-        self.handled = True
+        self.handled = not self.handled
 
     def update_directories(self):
         self.directories = Reader.read_from_csv(str_f.PATHS_CSV_PATH)
