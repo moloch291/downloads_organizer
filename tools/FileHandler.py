@@ -1,5 +1,6 @@
 from tools.observer.Reader import Reader
 from tools.observer.Writer import Writer
+from tools.observer.Display import Display
 
 from variable_storage import string_factory as str_f
 
@@ -18,7 +19,7 @@ class FileHandler:
             Reader.collect_content(dir_path, container)
             return True
         except FileNotFoundError:
-            writer.terminal_cleaner()
+            Display.terminal_cleaner()
             print(str_f.FOLDER_NOT_FOUND)
             return False
 

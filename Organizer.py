@@ -45,6 +45,19 @@ class Organizer:
             self.__init_paths()
             self.distribute_files()
 
+    def wants_to_redefine_paths(self):
+        _wants_to = str(input("Do you want to choose new target folders? "))
+        if _wants_to in str_f.POSITIVE_FEEDBACK:
+            for dir_type in [str_f.DOWNLOADS, str_f.MUSIC, str_f.PICTURES, str_f.MUSIC, str_f.VIDEOS]:
+                self.writer.write_on_csv(
+                    str_f.PATHS_CSV_PATH,
+                    dir_type,
+                    str_f.UNKNOWN,
+                    str_f.FALSE
+                )
+        elif _wants_to in str_f.NEGATIVE_FEEDBACK:
+            print(str_f.WHATEVER)
+
 ########################################################################################################################
     # Private:
 ########################################################################################################################
